@@ -26,3 +26,15 @@ test('are the same value', () => {
   expect(can1.ounces).toBe(can2.ounces);
   expect(can1.ounces).toEqual(can2.ounces);
 });
+
+test('throw Error when passing no variable', () => {
+  class Foo {
+    constructor({ message }) {
+      this.message = message;
+    }
+  }
+
+  expect(() => {
+    new Foo();
+  }).toThrow();
+});
