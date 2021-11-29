@@ -1,3 +1,5 @@
+import { fetchData } from './group';
+
 const can1 = {
   flavor: 'grapefruit',
   ounces: 12,
@@ -41,4 +43,18 @@ test('throw Error when passing no variable', () => {
   expect(() => new Foo()).toThrow(
     "Cannot destructure property 'message' of 'undefined' as it is undefined."
   );
+});
+
+const fetchDataWithCallback = (callback) => {
+  setTimeout(callback, 3000, 'lemon');
+};
+
+// callback内で単純にexpectを実行した場合、テストが終了せずTimeoutエラーになりテストは失敗します。
+test('return lemon', (done) => {
+  const callback = (data) => {
+    expect(data).toBe('lemon');
+    done(); //テストの終了を宣言
+  };
+
+  fetchDataWithCallback(callback);
 });
