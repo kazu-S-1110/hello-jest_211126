@@ -1,5 +1,3 @@
-import { fetchData } from './group';
-
 const can1 = {
   flavor: 'grapefruit',
   ounces: 12,
@@ -57,4 +55,10 @@ test('return lemon', (done) => {
   };
 
   fetchDataWithCallback(callback);
+});
+
+const fetchData = () => Promise.resolve('lemon');
+
+test('resolves to lemon', () => {
+  return expect(fetchData()).resolves.toBe('lemon');
 });
